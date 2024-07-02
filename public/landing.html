@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="landing.js" defer></script>
+        <link rel="stylesheet" href="landing.css">
+    </head>
+    <body>
+        <div>
+            <form onsubmit="appointment(event)">
+                <textarea type="text" placeholder="Appointment" required></textarea>
+                <div>
+                    <label for="datetime">Select Date and Time</label>
+                </div>
+                <div>
+                    <input type="datetime-local" id="datetime" required>
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
