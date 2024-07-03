@@ -28,7 +28,7 @@ function createUser (event) {
 // Logs in an existing user
 function login (event) {
     event.preventDefault();
-
+    console.log("Hello");
     email = document.getElementById("log-email");
     password = document.getElementById("log-password")
     const url = "http://localhost:3000/user/login";

@@ -27,7 +27,7 @@ router.post('/create', async (req, res) => {
 
         // The new user object is pushed to the users list/array
         users.push(user);
-        console.log(users);
+        // console.log(users);
     }
     catch {
         res.status(500).send("Something went wrong");
@@ -46,6 +46,9 @@ router.post('/login', async (req, res) => {
         // Uses bycrypt to compare the hashed passsword with the password provided by the user
         // If the password matches, a html file is sent back to the user
         if (await bcrypt.compare(req.body.password, user.password)) {
+            req.session.user = user;
+            // console.log(req.session.user.email);
+            // console.log(req.sessionID);
             res.sendFile(path.join(__dirname, '..', '..', 'public', 'landing.html'));
             console.log("Logged in");
         }

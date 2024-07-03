@@ -1,19 +1,28 @@
 function appointment (event) {
     event.preventDefault();
 
-    const datetimeValue = document.getElementById('datetime').value
+    const url =  "http://localhost:3000/user/appointment";
 
-    const datetimeObject = new Date(datetimeValue);
+    const appointmentObj = {
+        details: document.getElementById('details').value,
+        datetime: document.getElementById('datetime').value
+    }
 
-    console.log(datetimeObject);
-
-    const datetime = {
-        year: datetimeObject.getFullYear(),
-        month: datetimeObject.getMonth() + 1,
-        day: datetimeObject.getDate(),
-        hours: datetimeObject.getHours(),
-        minutes: datetimeObject.getMinutes()
-    } 
+    // const datetime = {
+    //     year: datetimeObject.getFullYear(),
+    //     month: datetimeObject.getMonth() + 1,
+    //     day: datetimeObject.getDate(),
+    //     hours: datetimeObject.getHours(),
+    //     minutes: datetimeObject.getMinutes()
+    // }
     
-    console.log(datetime.day);
+    fetch(url, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(appointmentObj)
+    })
+    .then(response => console.log(response))
+    .then(() => { alert("You have booked an appointment") });
 }
