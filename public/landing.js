@@ -23,6 +23,6 @@ function appointment (event) {
         },
         body: JSON.stringify(appointmentObj)
     })
-    .then(response => console.log(response))
+    .then(response => console.log(response.body))
     .then(() => { alert("You have booked an appointment") });
 }
