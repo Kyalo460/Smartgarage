@@ -23,6 +23,14 @@ function appointment (event) {
         },
         body: JSON.stringify(appointmentObj)
     })
-    .then(response => console.log(response.body))
+    .then(response => response.text())
+    .then(html => {
+        document.open();
+        document.write(html);
+        document.close();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    })
     .then(() => { alert("You have booked an appointment") });
 }

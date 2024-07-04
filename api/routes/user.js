@@ -13,24 +13,31 @@ router.post('/create', async (req, res) => {
     try {
         const exists = users.find(user => user.email === req.body.email);
         if (exists) {
-            res.send("User already exists");
-            res.end();
+            res.status(400).sendFile(path.join(__dirname, '..', '..', 'public', 'index.html'));
             console.log("User already exists");
             return;
         }
         // Hashes the password before adding it in the user object
+        console.log(req.body);
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
         const user = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            phone: req.body.phone,
+            carModel: req.body.carModel,
             email: req.body.email,
             password: hashedPassword
         };
 
         // The new user object is pushed to the users list/array
         users.push(user);
-        // console.log(users);
+
+        // Sends a file containing the login HTML to be rendered
+        res.status(200).sendFile(path.join(__dirname, '..', '..', 'public', 'login.html'));
     }
     catch {
-        res.status(500).send("Something went wrong");
+        res.status(500).send("Something big went wrong");
     }
 });
 
@@ -39,8 +46,8 @@ router.post('/login', async (req, res) => {
     // Tries to find the user's email in the users list
     // If not found it returns null
     const user = users.find(user => user.email === req.body.email);
-    if (user === null) {
-        return res.status(400).send("User not found");
+    if (!user) {
+        return res.status(400).sendFile(path.join(__dirname, '..', '..', 'public', 'login.html'));;
     }
     try {
         // Uses bycrypt to compare the hashed passsword with the password provided by the user
@@ -53,7 +60,7 @@ router.post('/login', async (req, res) => {
             console.log("Logged in");
         }
         else {
-            res.send('Wrong password or email');
+            res.status(400).sendFile(path.join(__dirname, '..', '..', 'public', 'login.html'));;
         }
     }
     catch {

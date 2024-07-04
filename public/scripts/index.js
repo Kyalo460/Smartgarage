@@ -2,14 +2,16 @@
 function createUser (event) {
     event.preventDefault();
 
-    email = document.getElementById("email");
-    password = document.getElementById("password");
     const url = "http://localhost:3000/user/create"
 
     // New user object containing the email and password
     const newUser = {
-        email: email.value,
-        password: password.value
+        firstName: document.getElementById("firstName").value,
+        lastName: document.getElementById("lastName").value,
+        phone: document.getElementById("phone").value,
+        carModel: document.getElementById("carModel").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
     }
 
     console.log("Saved info");
@@ -22,6 +24,23 @@ function createUser (event) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(newUser)
+    })
+    .then(response => {
+        if (response.status === 400) {
+            alert("That email already exists. Try loging in.");
+        }
+        else {
+            alert("You have created an account, you can log in now.")
+        }
+        return response.text();
+    })
+    .then(html => {
+        document.open();
+        document.write(html);
+        document.close();
+    })
+    .catch(error => {
+        console.error('Error:', error);
     });
 }
 
@@ -47,7 +66,12 @@ function login (event) {
         },
         body: JSON.stringify(user)
     })
-    .then(response => response.text())
+    .then(response => {
+        if (response.status === 400) {
+            alert("Wrong username or password!");
+        }
+        return response.text()
+    })
     .then(html => {
         document.open();
         document.write(html);
