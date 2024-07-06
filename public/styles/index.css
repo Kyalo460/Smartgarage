@@ -1,8 +1,16 @@
 body {
-    background-color: #315659;
+    background-color: #13262F;
+    color: #50FFB1;
+    /* display: flex; */
 }
 
 .credentials {
     margin: auto;
     display: block;
+    background-color: #FFCA3A;
+    color: white;
+}
+
+.info {
+    margin: auto;
 }

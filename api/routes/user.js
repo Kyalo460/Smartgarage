@@ -2,9 +2,21 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const path = require('path');
+const mysql = require('mysql2');
 
 // A storage for users. It becomes empty when server refreshes.
 const users = [];
+
+const con = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'root'
+});
+
+con.connect((err) => {
+    if (err) throw err;
+    console.log("Connected!");
+});
 
 // Api for creating a new user
 router.post('/create', async (req, res) => {

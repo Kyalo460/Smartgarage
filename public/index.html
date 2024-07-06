@@ -5,8 +5,8 @@
         <link rel="stylesheet" href="/styles/index.css">
     </head>
     <body>
-        <h2>Welcome to Smartgarage, where you can make appointments to get your car fixed.</h2>
-        <h3>Create your account:</h3>
+        <h2 class="info">Welcome to Smartgarage, where you can make appointments to get your car fixed.</h2>
+        <h3 class="info">Create your account:</h3>
         <div id="createUser">
             <form onsubmit="createUser(event)">
                 <input type="text" class="credentials" id="firstName" placeholder="First Name" required>
@@ -19,8 +19,10 @@
             </form>
         </div>
         <div>
-            <p>If you already have an account, you can login by clicking the link below:</p>
-            <a href="/login.html">Log in</a>
+            <p class="info">If you already have an account, you can login by clicking the link below:</p>
+            <a href="/login.html">
+                <button>Log in</button>
+            </a>
         </div>
     </body>
 </html>
