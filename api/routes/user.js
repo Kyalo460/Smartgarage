@@ -2,27 +2,37 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const path = require('path');
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
+const { CONNREFUSED } = require('dns');
 
 // A storage for users. It becomes empty when server refreshes.
-const users = [];
-
+let users = [];
 const con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root'
+    password: 'root',
+    database: 'smartgarage_users'
 });
 
-con.connect((err) => {
-    if (err) throw err;
-    console.log("Connected!");
-});
+async function fetchUsers() {
+    const connection = await con;
+    const [rows] = await connection.execute('SELECT * FROM users');
+    return rows;
+}
+
+async function load() {
+    users = await fetchUsers();
+};
+
+load();
 
 // Api for creating a new user
 router.post('/create', async (req, res) => {
     // Tries to find if the user's email exists in the users[] list
     // If the email exists a response is sent saying so
     try {
+        await load();
+
         const exists = users.find(user => user.email === req.body.email);
         if (exists) {
             res.status(400).sendFile(path.join(__dirname, '..', '..', 'public', 'index.html'));
@@ -30,26 +40,23 @@ router.post('/create', async (req, res) => {
             return;
         }
         // Hashes the password before adding it in the user object
-        console.log(req.body);
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-        const user = {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            phone: req.body.phone,
-            carModel: req.body.carModel,
-            email: req.body.email,
-            password: hashedPassword
-        };
+        // Makes an array containing user details to be added to the database
+        const userArr = [req.body.firstName, req.body.lastName,
+            req.body.phone, req.body.carModel, req.body.email, hashedPassword];
 
-        // The new user object is pushed to the users list/array
-        users.push(user);
+        const sql = "INSERT INTO users (firstname, Lastname, phone, carmodel, email, password) VALUES (?, ?, ?, ?, ?, ?)"
+        
+        const [result] = await con.execute(sql, userArr);
+        console.log("Number of records inserted: " + result.affectedRows);
 
         // Sends a file containing the login HTML to be rendered
         res.status(200).sendFile(path.join(__dirname, '..', '..', 'public', 'login.html'));
     }
-    catch {
-        res.status(500).send("Something big went wrong");
+    catch (err) {
+        console.log(err);
+        res.status(500).send("Something went wrong");
     }
 });
 
@@ -57,6 +64,7 @@ router.post('/create', async (req, res) => {
 router.post('/login', async (req, res) => {
     // Tries to find the user's email in the users list
     // If not found it returns null
+    await load();
     const user = users.find(user => user.email === req.body.email);
     if (!user) {
         return res.status(400).sendFile(path.join(__dirname, '..', '..', 'public', 'login.html'));;
@@ -66,10 +74,7 @@ router.post('/login', async (req, res) => {
         // If the password matches, a html file is sent back to the user
         if (await bcrypt.compare(req.body.password, user.password)) {
             req.session.user = user;
-            // console.log(req.session.user.email);
-            // console.log(req.sessionID);
             res.sendFile(path.join(__dirname, '..', '..', 'public', 'landing.html'));
-            console.log("Logged in");
         }
         else {
             res.status(400).sendFile(path.join(__dirname, '..', '..', 'public', 'login.html'));;
