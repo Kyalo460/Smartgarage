@@ -5,26 +5,29 @@ const path = require('path');
 const mysql = require('mysql2/promise');
 const { CONNREFUSED } = require('dns');
 
-// A storage for users. It becomes empty when server refreshes.
 let users = [];
-const con = mysql.createConnection({
+
+const dbConfig = {
     host: 'localhost',
-    user: 'root',
-    password: 'root',
+    user: 'kyalo460',
+    password: 'kyalo460',
     database: 'smartgarage_users'
-});
-
-async function fetchUsers() {
-    const connection = await con;
-    const [rows] = await connection.execute('SELECT * FROM users');
-    return rows;
-}
-
-async function load() {
-    users = await fetchUsers();
 };
 
-load();
+let con;
+async function initializeConnection() {
+    con = await mysql.createConnection(dbConfig);
+}
+
+// Function to load users from the database
+async function load() {
+    const [rows] = await con.execute('SELECT * FROM users');
+    users = rows;
+}
+
+// Initialize the database connection and load users
+initializeConnection().then(load).catch(err => console.error('Failed to initialize database connection:', err));
+
 
 // Api for creating a new user
 router.post('/create', async (req, res) => {
@@ -35,7 +38,7 @@ router.post('/create', async (req, res) => {
 
         const exists = users.find(user => user.email === req.body.email);
         if (exists) {
-            res.status(400).sendFile(path.join(__dirname, '..', '..', 'public', 'index.html'));
+            res.status(400).sendFile(path.join(__dirname, '..', '..', 'public', 'create.html'));
             console.log("User already exists");
             return;
         }
@@ -46,7 +49,7 @@ router.post('/create', async (req, res) => {
         const userArr = [req.body.firstName, req.body.lastName,
             req.body.phone, req.body.carModel, req.body.email, hashedPassword];
 
-        const sql = "INSERT INTO users (firstname, Lastname, phone, carmodel, email, password) VALUES (?, ?, ?, ?, ?, ?)"
+        const sql = "INSERT INTO users (firstname, lastname, phone, carmodel, email, password) VALUES (?, ?, ?, ?, ?, ?)"
         
         const [result] = await con.execute(sql, userArr);
         console.log("Number of records inserted: " + result.affectedRows);
@@ -74,7 +77,7 @@ router.post('/login', async (req, res) => {
         // If the password matches, a html file is sent back to the user
         if (await bcrypt.compare(req.body.password, user.password)) {
             req.session.user = user;
-            res.sendFile(path.join(__dirname, '..', '..', 'public', 'landing.html'));
+            res.sendFile(path.join(__dirname, '..', '..', 'public', 'appointment.html'));
         }
         else {
             res.status(400).sendFile(path.join(__dirname, '..', '..', 'public', 'login.html'));;
@@ -85,4 +88,21 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.get('/login', (req, res) => {
+    if (req.session.user) {
+        res.sendFile(path.join(__dirname, '..', '..', 'public', 'appointment.html'));
+    }
+    else {
+        res.sendFile(path.join(__dirname, '..', '..', 'public', 'login.html'));
+    }
+});
+
+router.get('/', (req, res) => {
+    if (req.session.user) {
+        res.sendFile(path.join(__dirname, '..', '..', 'public', 'appointment.html'));
+    }
+    else {
+        res.sendFile(path.join(__dirname, '..', '..', 'public', 'create.html'));
+    }
+});
 module.exports = router;

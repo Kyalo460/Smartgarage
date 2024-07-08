@@ -5,8 +5,8 @@ const nodemailer = require('nodemailer');
 
 const appointments = [];
 
+
 router.post('/', (req, res) => {
-    // console.log(typeof req.body.datetimeVal);
     const appointmentObj = {
         email: req.session.user.email,
         details: req.body.details,

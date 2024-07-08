@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="/scripts/index.js" defer></script>
+        <script src="/scripts/create.js" defer></script>
         <link rel="stylesheet" href="/styles/login.css">
     </head>
     <body>
@@ -10,19 +10,15 @@
         </div>
         <div id="login">
             <form onsubmit="login(event)">
-                <div>
-                    <input class="credentials" type="text" id="log-email" placeholder="Email" required>
-                </div>
-                <div>
-                    <input class="credentials" type="text" id="log-password" placeholder="Password" required>
-                </div>
-                <div>
-                    <button class="credentials" type="submit">log in</button>
-                </div>
+                <input class="credentials" type="text" id="log-email" placeholder="Email" required>
+                <input class="credentials" type="text" id="log-password" placeholder="Password" required>
+                <button class="credentials" type="submit">log in</button>
             </form>
             <div>
                 <p>If you do not have an account, you can click the link below to create one:</p>
-                <a href="/index.html">Create User</a>
+                <a href="/">
+                    <button>User</button>
+                </a>
             </div>
         </div>
     </body>

@@ -16,8 +16,7 @@ app.use(session({
 
 app.use(express.json());
 app.use('/', express.static('public'));
-// app.use('/login', login);
-app.use('/user', user);
+app.use('/', user);
 app.use('/user/appointment', appointment);
 
 app.listen(port, () => {

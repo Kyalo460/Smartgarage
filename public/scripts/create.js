@@ -2,7 +2,7 @@
 function createUser (event) {
     event.preventDefault();
 
-    const url = "http://localhost:3000/user/create"
+    const url = "http://localhost:3000/create"
 
     // New user object containing the email and password
     const newUser = {
@@ -27,7 +27,7 @@ function createUser (event) {
     })
     .then(response => {
         if (response.status === 400) {
-            alert("That email already exists. Try loging in.");
+            alert("That email already exists.");
         }
         else {
             alert("You have created an account, you can log in now.")
@@ -50,7 +50,7 @@ function login (event) {
     console.log("Hello");
     email = document.getElementById("log-email");
     password = document.getElementById("log-password")
-    const url = "http://localhost:3000/user/login";
+    const url = "http://localhost:3000/login";
 
     // User object containing the email and password
     const user = {

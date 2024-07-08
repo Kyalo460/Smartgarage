@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/scripts/appointment.js" defer></script>
+        <link rel="stylesheet" href="/styles/appointment.css">
+    </head>
+    <body>
+        <div>
+            <form onsubmit="appointment(event)">
+                <textarea type="text" class="credentials" id="details" placeholder="Appointment" required></textarea>
+                    <input type="datetime-local" class="credentials" id="datetime" required>
+                    <input type="submit" class="credentials" value="Submit">
+            </form>
+        </div>
+    </body>
+</html>
