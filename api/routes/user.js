@@ -97,6 +97,10 @@ router.get('/login', (req, res) => {
     }
 });
 
+router.get('/create', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', '..', 'public', 'create.html'));
+});
+
 router.get('/', (req, res) => {
     if (req.session.user) {
         res.sendFile(path.join(__dirname, '..', '..', 'public', 'appointment.html'));

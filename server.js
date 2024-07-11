@@ -17,7 +17,7 @@ app.use(session({
 app.use(express.json());
 app.use('/', express.static('public'));
 app.use('/', user);
-app.use('/user/appointment', appointment);
+app.use('/appointment', appointment);
 
 app.listen(port, () => {
     console.log("Server running at http://localhost:3000/");

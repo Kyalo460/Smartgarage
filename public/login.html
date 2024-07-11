@@ -5,8 +5,15 @@
         <link rel="stylesheet" href="/styles/login.css">
     </head>
     <body>
+        <nav>
+            <ul>
+                <li><a href="/appointment">Appointments</a></li>
+                <li><a href="/create">Sign Up</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
         <div>
-            <p>If you already have an account, you can log in below:</p>
+            <h2>If you already have an account, you can log in below:</h2>
         </div>
         <div id="login">
             <form onsubmit="login(event)">
@@ -15,7 +22,7 @@
                 <button class="credentials" type="submit">log in</button>
             </form>
             <div>
-                <p>If you do not have an account, you can click the link below to create one:</p>
+                <h2 class="info">Click the button below to create an account:</h2>
                 <a href="/">
                     <button>Create User</button>
                 </a>

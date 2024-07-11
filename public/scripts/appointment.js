@@ -1,7 +1,7 @@
 function appointment (event) {
     event.preventDefault();
 
-    const url =  "http://localhost:3000/user/appointment";
+    const url =  "http://localhost:3000/appointment";
 
     const appointmentObj = {
         details: document.getElementById('details').value,
@@ -23,14 +23,24 @@ function appointment (event) {
         },
         body: JSON.stringify(appointmentObj)
     })
-    .then(response => response.text())
+    .then(response => {
+        if (response.status === 400) {
+            alert("That time is not available, please choose a different time or date");
+        } else {
+            alert("You have booked an appointment");
+        }
+        return response.text()
+    })
     .then(html => {
-        document.open();
-        document.write(html);
-        document.close();
+        document.getElementById('existing').innerHTML = html;
     })
     .catch(error => {
         console.error('Error:', error);
-    })
-    .then(() => { alert("You have booked an appointment") });
+    });
 }
+
+// function load() {
+//     const url = 'http://localhost:3000/load';
+    
+//     fetch
+// }

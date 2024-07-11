@@ -5,12 +5,28 @@
         <link rel="stylesheet" href="/styles/appointment.css">
     </head>
     <body>
+        <nav>
+            <ul>
+                <li><a href="/appointment">Appointments</a></li>
+                <li><a href="/create">Sign Up</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+        <div>
+            <h1>
+                Book an appointment by providing the details of what the apoointment is a about and then choosing the date and time you would like the appointment to be.
+            </h1>
+        </div>
         <div>
             <form onsubmit="appointment(event)">
-                <textarea type="text" class="credentials" id="details" placeholder="Appointment" required></textarea>
+                <textarea type="text" class="credentials" id="details" placeholder="Details..." required></textarea>
                     <input type="datetime-local" class="credentials" id="datetime" required>
                     <input type="submit" class="credentials" value="Submit">
             </form>
+        </div>
+        <div id="existing"></div>
+        <div>
+            <button onclick="load()">Load Appointments</button>
         </div>
     </body>
 </html>
