@@ -10,7 +10,7 @@ const dbConfig = {
     host: 'localhost',
     user: 'kyalo460',
     password: 'kyalo460',
-    database: 'smartgarage_users'
+    database: 'smartgarage'
 };
 
 let con;
