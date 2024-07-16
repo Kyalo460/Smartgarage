@@ -1,28 +1,87 @@
+/* General body styling */
 body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #13262F;
     color: #50FFB1;
+    margin: 0; /* Remove default body margin */
+    height: 100vh; /* Use full viewport height */
+    font-family: Arial, sans-serif; /* Set a modern font */
 }
 
+/* Centering h1 and other text */
+h1 {
+    text-align: center;
+    margin: 20px auto;
+    font-size: 24px; /* Adjust font size */
+    padding: 0 20px; /* Add padding for better readability */
+}
+
+/* Form inputs, textarea, and buttons */
 .credentials {
+    margin: 10px 0;
     display: block;
-    margin: 5px auto;
+    width: 300px; /* Set a consistent width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    background-color: #FFF;
+    color: #333;
+    font-size: 16px;
+    resize: none; /* Prevent resizing for textarea */
+}
+
+/* Style the submit button separately */
+input[type="submit"].credentials {
     background-color: #FFCA3A;
     color: black;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"].credentials:hover {
+    background-color: #e6b635;
+}
+
+/* General button styling */
+button {
+    background-color: #FFCA3A;
+    color: black;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Add margin for spacing */
+}
+
+button:hover {
+    background-color: #e6b635;
 }
 
 /* Navigation menu */
 nav {
     background-color: #333;
+    width: 100%; /* Ensure nav spans full width */
+    display: flex; /* Use flexbox for positioning */
+    justify-content: flex-end; /* Align items to the right */
+    padding: 10px 0; /* Add some padding */
 }
+
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    display: flex; /* Display items in a row */
 }
+
 nav ul li {
-    float: right;
+    margin-left: 20px; /* Space between items */
 }
+
 nav ul li a {
     display: block;
     color: white;
@@ -30,6 +89,16 @@ nav ul li a {
     padding: 14px 16px;
     text-decoration: none;
 }
+
 nav ul li a:hover {
     background-color: #111;
+}
+
+/* Center the appointment form container */
+form {
+    width: 100%; /* Ensure it uses available space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }

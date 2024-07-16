@@ -101,12 +101,32 @@ router.get('/create', (req, res) => {
     res.sendFile(path.join(__dirname, '..', '..', 'public', 'create.html'));
 });
 
+router.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', '..', 'public', 'about.html'));
+});
+
+router.get('/logout', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', '..', 'public', 'logout.html'));
+});
+
+router.delete('/logout', (req, res) => {
+    if (req.session) {
+        req.session.destroy((err) => {
+            if (err) {
+                return res.status(500).sendFile(path.join(__dirname, '..', '..', 'public', 'logout.html'));
+            }
+            res.clearCookie('connect.sid');
+            res.sendFile(path.join(__dirname, '..', '..', 'public', 'about.html'));
+        })
+    }
+})
+
 router.get('/', (req, res) => {
     if (req.session.user) {
         res.sendFile(path.join(__dirname, '..', '..', 'public', 'appointment.html'));
     }
     else {
-        res.sendFile(path.join(__dirname, '..', '..', 'public', 'create.html'));
+        res.sendFile(path.join(__dirname, '..', '..', 'public', 'about.html'));
     }
 });
 module.exports = router;

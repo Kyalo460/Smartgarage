@@ -1,0 +1,79 @@
+/* General body styling */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #13262F;
+    color: #50FFB1;
+    margin: 0; /* Remove default body margin */
+    font-family: Arial, sans-serif; /* Set a modern font */
+}
+
+/* Navigation menu */
+nav {
+    background-color: #333;
+    width: 100%; /* Ensure nav spans full width */
+    display: flex; /* Use flexbox for positioning */
+    justify-content: flex-end; /* Align items to the right */
+    padding: 10px 0; /* Add some padding */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Display items in a row */
+}
+
+nav ul li {
+    margin-left: 20px; /* Space between items */
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #111;
+}
+
+/* Centering h1 and other text */
+h1 {
+    text-align: center;
+    margin: 20px auto;
+    font-size: 24px; /* Adjust font size */
+    padding: 0 20px; /* Add padding for better readability */
+}
+
+/* Image styling */
+img {
+    width: 80%; /* Make images responsive */
+    max-width: 600px; /* Set a maximum width */
+    height: auto; /* Maintain aspect ratio */
+    margin: 20px 0; /* Add vertical spacing */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box-shadow for a slight 3D effect */
+}
+
+/* Span styling */
+span {
+    display: block; /* Ensure span takes up full width */
+    text-align: center;
+    font-size: 16px; /* Adjust font size */
+    margin-bottom: 20px; /* Add vertical spacing */
+}
+
+/* Links styling */
+.links {
+    color: #FFCA3A; /* Match button color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.links:hover {
+    text-decoration: underline;
+}

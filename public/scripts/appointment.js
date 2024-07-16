@@ -7,14 +7,6 @@ function appointment (event) {
         details: document.getElementById('details').value,
         datetime: document.getElementById('datetime').value
     }
-
-    // const datetime = {
-    //     year: datetimeObject.getFullYear(),
-    //     month: datetimeObject.getMonth() + 1,
-    //     day: datetimeObject.getDate(),
-    //     hours: datetimeObject.getHours(),
-    //     minutes: datetimeObject.getMinutes()
-    // }
     
     fetch(url, {
         method: "POST",
@@ -39,8 +31,33 @@ function appointment (event) {
     });
 }
 
-// function load() {
-//     const url = 'http://localhost:3000/load';
+function load() {
+    const url = 'http://localhost:3000/appointment/load';
+    console.log("Running load");
     
-//     fetch
-// }
+    fetch(url, {
+        method: "GET"
+    })
+    .then(response => {
+        if (response.status === 400) {
+            alert("You have no appointments");
+        }
+        return response.json()
+    })
+    .then(appointments => {
+        console.log(appointments);
+        const table = document.getElementById('appointments');
+        while (table.rows.length > 1) {
+            table.deleteRow(1);
+        }
+        document.getElementById('existing').style.display = "block";
+        appointments.forEach((appointment) => {
+            const html = `<tr><td>${appointment.details}</td><td>${appointment.datetime}</td></tr>`;
+            table.insertAdjacentHTML('beforeend', html);
+        });
+        
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}

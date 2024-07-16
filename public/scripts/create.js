@@ -47,7 +47,6 @@ function createUser (event) {
 // Logs in an existing user
 function login (event) {
     event.preventDefault();
-    console.log("Hello");
     email = document.getElementById("log-email");
     password = document.getElementById("log-password")
     const url = "http://localhost:3000/login";
@@ -69,6 +68,31 @@ function login (event) {
     .then(response => {
         if (response.status === 400) {
             alert("Wrong username or password!");
+        }
+        return response.text()
+    })
+    .then(html => {
+        document.open();
+        document.write(html);
+        document.close();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function logout() {
+    const url = "http://localhost:3000/logout";
+
+    fetch(url, {
+        method: "DELETE",
+    })
+    .then(response => {
+        if (response.status === 500) {
+            alert("Something went wrong when trying to log you out, try again.");
+        }
+        else {
+            alert("You have logged out successfully!");
         }
         return response.text()
     })

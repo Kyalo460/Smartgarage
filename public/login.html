@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="icon" href="/images/icon1.png" type="image/png">
         <script src="/scripts/create.js" defer></script>
         <link rel="stylesheet" href="/styles/login.css">
     </head>
@@ -10,15 +11,16 @@
                 <li><a href="/appointment">Appointments</a></li>
                 <li><a href="/create">Sign Up</a></li>
                 <li><a href="/login">Login</a></li>
+                <li><a href="/about">About</a></li>
             </ul>
         </nav>
         <div>
-            <h2>If you already have an account, you can log in below:</h2>
+            <h2 class="info">If you already have an account, you can log in below:</h2>
         </div>
         <div id="login">
             <form onsubmit="login(event)">
                 <input class="credentials" type="text" id="log-email" placeholder="Email" required>
-                <input class="credentials" type="text" id="log-password" placeholder="Password" required>
+                <input class="credentials" type="password" id="log-password" placeholder="Password" required>
                 <button class="credentials" type="submit">log in</button>
             </form>
             <div>

@@ -79,4 +79,15 @@ router.get('/', (req, res) => {
     }
 });
 
+router.get('/load', async (req, res) => {
+
+    const email = req.session.user.email;
+    const sql = "SELECT details, datetime FROM appointments WHERE email = ? AND status = 'Pending'";
+
+    const [result] = await con.execute(sql, [email]);
+
+    res.send(result);
+    
+});
+
 module.exports = router;

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="icon" href="/images/icon1.png" type="image/png">
         <script src="/scripts/appointment.js" defer></script>
         <link rel="stylesheet" href="/styles/appointment.css">
     </head>
@@ -8,13 +9,13 @@
         <nav>
             <ul>
                 <li><a href="/appointment">Appointments</a></li>
-                <li><a href="/create">Sign Up</a></li>
-                <li><a href="/login">Login</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/logout">Logout</a></li>
             </ul>
         </nav>
         <div>
             <h1>
-                Book an appointment by providing the details of what the apoointment is a about and then choosing the date and time you would like the appointment to be.
+                Book an appointment by providing the details of what the appointment is a about and then choosing the date and time you would like the appointment to be.
             </h1>
         </div>
         <div>
@@ -24,9 +25,16 @@
                     <input type="submit" class="credentials" value="Submit">
             </form>
         </div>
-        <div id="existing"></div>
         <div>
             <button onclick="load()">Load Appointments</button>
+        </div>
+        <div style="display: none;" id="existing">
+            <table id="appointments">
+                <tr>
+                    <th>Appointment</th>
+                    <th>Date</th>
+                </tr>
+            </table>        
         </div>
     </body>
 </html>
