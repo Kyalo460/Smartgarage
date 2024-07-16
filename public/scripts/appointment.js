@@ -1,7 +1,7 @@
 function appointment (event) {
     event.preventDefault();
 
-    const url =  "http://localhost:3000/appointment";
+    const url =  "http://54.165.138.151:3000/appointment";
 
     const appointmentObj = {
         details: document.getElementById('details').value,
@@ -32,7 +32,7 @@ function appointment (event) {
 }
 
 function load() {
-    const url = 'http://localhost:3000/appointment/load';
+    const url = 'http://54.165.138.151:3000/appointment/load';
     console.log("Running load");
     
     fetch(url, {

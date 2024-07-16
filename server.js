@@ -3,7 +3,6 @@ const app = express();
 const session = require('express-session');
 const user = require('./api/routes/user');
 const appointment = require('./api/routes/appointment');
-// const login = require('./api/routes/login');
 
 const port = 3000;
 
@@ -20,5 +19,5 @@ app.use('/', user);
 app.use('/appointment', appointment);
 
 app.listen(port, () => {
-    console.log("Server running at http://localhost:3000/");
+    console.log("Server running at http://54.165.138.151:3000/");
 });
