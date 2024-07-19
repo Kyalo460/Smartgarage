@@ -7,7 +7,11 @@ const appointment = require('./api/routes/appointment');
 
 const port = 3000;
 
-app.use(cors());
+const corsOptions = {
+    credentials: true
+};
+
+app.use(cors(corsOptions));
 
 app.use(session({
     secret: 'your-secret-key',

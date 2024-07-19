@@ -49,7 +49,7 @@ function login (event) {
     event.preventDefault();
     email = document.getElementById("log-email");
     password = document.getElementById("log-password")
-    const url = "http://kyalo460.tech:3000/login";
+    const url = "http://54.165.138.151:3000/login";
 
     // User object containing the email and password
     const user = {
