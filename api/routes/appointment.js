@@ -29,6 +29,7 @@ initializeConnection()
 .then(load)
 .catch(err => console.error('Failed to initialize database connection:', err));
 
+// Creates new appointment
 router.post('/', async (req, res) => {
     await load();
 
@@ -46,6 +47,7 @@ router.post('/', async (req, res) => {
         second: '2-digit'
     });
 
+    // Checks if appointment time is already booked
     const exists = appointments.find(appointmentObj => appointmentObj.datetime === dateTimeString)
 
     if (exists) {
@@ -65,6 +67,7 @@ router.post('/', async (req, res) => {
 
     const sql = 'INSERT INTO appointments (email, details, datetime) VALUES (?, ?, ?)';
 
+    // Adds appointment to database storage
     const [result] = await con.execute(sql, appointmentArr);
     console.log("Number of records inserted: " + result.affectedRows);
 

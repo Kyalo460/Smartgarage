@@ -11,8 +11,10 @@ const corsOptions = {
     credentials: true
 };
 
+// enables Cross-Origin Resource Sharing
 app.use(cors(corsOptions));
 
+// creates session
 app.use(session({
     secret: 'your-secret-key',
     resave: false,
@@ -20,11 +22,13 @@ app.use(session({
     cookie: { secure: false }
   }));
 
+// express middleware
 app.use(express.json());
 app.use('/', express.static('public'));
 app.use('/', user);
 app.use('/appointment', appointment);
 
+// starts server
 app.listen(port, () => {
     console.log("Server running at http://54.165.138.151:3000/");
 });

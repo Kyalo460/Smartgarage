@@ -17,7 +17,7 @@ function createUser (event) {
     console.log("Saved info");
     console.log(newUser);
 
-    // Makes a post request to the api which adds the new user to starage
+    // Makes a post request to the api which adds the new user to storage
     fetch(url, {
         method: "POST",
         headers: {
@@ -81,9 +81,11 @@ function login (event) {
     });
 }
 
+// Logs out a user
 function logout() {
     const url = "http://54.165.138.151:3000/logout";
 
+    // Makes a DELETE request to the api endpoint to logout a user
     fetch(url, {
         method: "DELETE",
     })

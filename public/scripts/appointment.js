@@ -1,3 +1,4 @@
+// Creates an appointment
 function appointment (event) {
     event.preventDefault();
 
@@ -8,6 +9,7 @@ function appointment (event) {
         datetime: document.getElementById('datetime').value
     }
     
+    // Makes a POST request to create and save an appointment
     fetch(url, {
         method: "POST",
         headers: {
@@ -31,10 +33,11 @@ function appointment (event) {
     });
 }
 
+// Loads existing appointments from backend storage
 function load() {
     const url = 'http://54.165.138.151:3000/appointment/load';
-    console.log("Running load");
     
+    // Makes a GET request to fetch appointment json object
     fetch(url, {
         method: "GET"
     })
@@ -45,11 +48,14 @@ function load() {
         return response.json()
     })
     .then(appointments => {
-        console.log(appointments);
         const table = document.getElementById('appointments');
+
+        // Deletes table rows if they exist to leave an empty table before insertion
         while (table.rows.length > 1) {
             table.deleteRow(1);
         }
+
+        // Inserts rows into the table with an id = 'existing'
         document.getElementById('existing').style.display = "block";
         appointments.forEach((appointment) => {
             const html = `<tr><td>${appointment.details}</td><td>${appointment.datetime}</td></tr>`;
