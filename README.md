@@ -10,5 +10,20 @@
 
 ### Click the link below that takes you to the sign up page
 <a href="http://www.kyalo460.tech:3000/create" target="_blank">Open Smartgarage sign up page</a>
+
 ### An image of the sign up page:
 ![Alt text](public/images/signUp.png)
+
+### After signing up you will be redirected to a log in page that looks like this:
+![Alt text](public/images/signIn.png)
+
+### Finally, after signing in, you will be redirected to a page for making appointments:
+![Alt text](public/images/appointment.png)
+
+
+## Contributors
+
+<a href="https://www.linkedin.com/in/brian-kyalo-17a438243" target="_blank">Brian's LinkedIn account</a>
+
+<a href="https://www.linkedin.com/in/caroline-kalumu" target="_blank">Caroline's LinkedIn account</a>
+
