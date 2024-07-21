@@ -12,7 +12,7 @@ const port = 3000;
 //};
 
 // enables Cross-Origin Resource Sharing
-app.use(cors());
+// app.use(cors());
 
 // creates session
 app.use(session({
