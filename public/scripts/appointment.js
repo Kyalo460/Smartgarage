@@ -25,9 +25,6 @@ function appointment (event) {
         }
         return response.text()
     })
-    .then(html => {
-        document.getElementById('existing').innerHTML = html;
-    })
     .catch(error => {
         console.error('Error:', error);
     });
