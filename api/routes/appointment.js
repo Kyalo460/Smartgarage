@@ -63,7 +63,7 @@ router.post('/', async (req, res) => {
     }
     console.log(appointmentObj);
 
-    appointmentArr = [appointmentObj.email, appointmentObj.details, appointmentObj.datetime];
+    const appointmentArr = [appointmentObj.email, appointmentObj.details, appointmentObj.datetime];
 
     const sql = 'INSERT INTO appointments (email, details, datetime) VALUES (?, ?, ?)';
 

@@ -2,7 +2,7 @@
 function appointment (event) {
     event.preventDefault();
 
-    const url =  "http://54.165.138.151:3000/appointment";
+    const url =  "http://www.kyalo460.tech:3000/appointment";
 
     const appointmentObj = {
         details: document.getElementById('details').value,
@@ -35,7 +35,7 @@ function appointment (event) {
 
 // Loads existing appointments from backend storage
 function load() {
-    const url = 'http://54.165.138.151:3000/appointment/load';
+    const url = 'http://www.kyalo460.tech:3000/appointment/load';
     
     // Makes a GET request to fetch appointment json object
     fetch(url, {
