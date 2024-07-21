@@ -7,12 +7,12 @@ const appointment = require('./api/routes/appointment');
 
 const port = 3000;
 
-const corsOptions = {
-    credentials: true
-};
+//const corsOptions = {
+//    credentials: true
+//};
 
 // enables Cross-Origin Resource Sharing
-app.use(cors(corsOptions));
+app.use(cors());
 
 // creates session
 app.use(session({
