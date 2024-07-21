@@ -56,6 +56,9 @@ router.post('/', async (req, res) => {
         return;
     }
 
+    console.log(req.session);
+    
+    console.log(req.session.user);
     const appointmentObj = {
         email: req.session.user.email,
         details: req.body.details,
