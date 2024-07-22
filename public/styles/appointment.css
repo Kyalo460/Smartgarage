@@ -96,10 +96,16 @@ form {
     padding: 20px;
 }
 
-#appointments {
+.table-container {
     width: 80%;
-    border-collapse: collapse;
+    display: flex;
+    justify-content: center;
     margin: 20px 0;
+}
+
+#appointments {
+    width: 100%;
+    border-collapse: collapse;
 }
 
 #appointments th, #appointments td {
@@ -120,4 +126,5 @@ form {
 
 #appointments tr:hover {
     background-color: black;
+    color: white;
 }
