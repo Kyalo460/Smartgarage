@@ -102,3 +102,30 @@ form {
     align-items: center;
     padding: 20px;
 }
+
+/* table styling */
+#appointments {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+#appointments th, #appointments td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+#appointments th {
+    background-color: #FFCA3A;
+    color: black;
+    font-weight: bold;
+}
+
+#appointments tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#appointments tr:hover {
+    background-color: #ddd;
+}
