@@ -88,7 +88,7 @@ router.get('/', (req, res) => {
 router.get('/load', async (req, res) => {
 
     const email = req.session.user.email;
-    const sql = "SELECT details, datetime FROM appointments WHERE email = ? AND status = 'Pending' ORDER BY id DESC";
+    const sql = "SELECT details, datetime FROM appointments WHERE email = ? AND status = 'Pending' ORDER BY datetime DESC";
 
     const [result] = await con.execute(sql, [email]);
 
