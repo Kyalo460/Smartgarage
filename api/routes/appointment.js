@@ -4,20 +4,11 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 const mysql = require('mysql2/promise');
 
-
-
-const dbConfig = {
-    host: 'localhost',
-    user: 'kyalo460',
-    password: 'kyalo460',
-    database: 'smartgarage'
-};
-
 let con;
 let appointments = [];
 
 async function initializeConnection() {
-    con = await mysql.createConnection(dbConfig);
+    con = await mysql.createConnection(process.env.DATABASE_URL);
 }
 
 async function load() {
@@ -88,7 +79,7 @@ router.get('/', (req, res) => {
 router.get('/load', async (req, res) => {
 
     const email = req.session.user.email;
-    const sql = "SELECT details, datetime FROM appointments WHERE email = ? AND status = 'Pending' ORDER BY id DESC";
+    const sql = "SELECT details, datetime FROM appointments WHERE email = ? ORDER BY id DESC";
 
     const [result] = await con.execute(sql, [email]);
 

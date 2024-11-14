@@ -7,16 +7,16 @@ const { CONNREFUSED } = require('dns');
 
 let users = [];
 
-const dbConfig = {
-    host: 'localhost',
-    user: 'kyalo460',
-    password: 'kyalo460',
-    database: 'smartgarage'
-};
+// const dbConfig = {
+//     host: 'localhost',
+//     user: 'kyalo460',
+//     password: 'kyalo460',
+//     database: 'smartgarage'
+// };
 
 let con;
 async function initializeConnection() {
-    con = await mysql.createConnection(dbConfig);
+    con = await mysql.createConnection(process.env.DATABASE_URL);
 }
 
 // Function to load users from the database
