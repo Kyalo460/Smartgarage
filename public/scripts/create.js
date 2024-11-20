@@ -2,7 +2,7 @@
 function createUser (event) {
     event.preventDefault();
 
-    const url = `http://localhost:3000/create`;
+    const url = `/create`;
 
     // New user object containing the email and password
     const newUser = {
@@ -49,7 +49,7 @@ function login (event) {
     event.preventDefault();
     email = document.getElementById("log-email");
     password = document.getElementById("log-password")
-    const url = `http://localhost:3000/login`;
+    const url = `/login`;
 
     // User object containing the email and password
     const user = {
@@ -83,7 +83,7 @@ function login (event) {
 
 // Logs out a user
 function logout() {
-    const url = `http://localhost:3000/logout`;
+    const url = `/logout`;
 
     // Makes a DELETE request to the api endpoint to logout a user
     fetch(url, {

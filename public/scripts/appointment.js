@@ -2,7 +2,7 @@
 function appointment (event) {
     event.preventDefault();
 
-    const url = `http://localhost:3000/appointment`;
+    const url = `/appointment`;
 
     const appointmentObj = {
         details: document.getElementById('details').value,
@@ -32,7 +32,7 @@ function appointment (event) {
 
 // Loads existing appointments from backend storage
 function load() {
-    const url = `http://localhost:3000/appointment/load`;
+    const url = `/appointment/load`;
     
     // Makes a GET request to fetch appointment json object
     fetch(url, {

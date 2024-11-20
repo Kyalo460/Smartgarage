@@ -5,7 +5,7 @@ const session = require('express-session');
 const user = require('./api/routes/user');
 const appointment = require('./api/routes/appointment');
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 // creates session
 app.use(session({
