@@ -8,8 +8,11 @@
 
 ## Usage
 
+### Landing page
+<a href="https://smartgarage-phi.vercel.app/" target="_blank">Smartgarage landing page</a>
+
 ### Click the link below that takes you to the sign up page
-<a href="http://www.kyalo460.tech:3000/create" target="_blank">Open Smartgarage sign up page</a>
+<a href="https://smartgarage-phi.vercel.app/create" target="_blank">Open Smartgarage sign up page</a>
 
 ### An image of the sign up page:
 ![Alt text](public/images/signUp.png)
